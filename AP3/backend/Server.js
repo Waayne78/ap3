@@ -20,7 +20,6 @@ app.use("/medication", medicationRoute);
 app.use("/doctor", doctorRoute);
 app.use("/patient", patientRoute);
 
-// Route d'inscription
 app.post("/signup", async (req, res) => {
     const { username, email, password, confirm } = req.body;
 

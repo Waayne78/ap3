@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Signup.css";
 
 function Signup() {
@@ -12,6 +13,7 @@ function Signup() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   function validatePassword(password) {
     const passwordRegex =
@@ -43,11 +45,26 @@ function Signup() {
     } else {
       setError("");
       setLoading(true);
-      setTimeout(() => {
-        setSuccess("Inscription réussie");
-        setLoading(false);
-        window.location.href = "/login";
-      }, 3000);
+
+      fetch("http://localhost:3001/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ username, email, password, confirm }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.message === "Inscription réussie") {
+            setSuccess("Inscription réussie");
+            setLoading(false);
+            navigate("/login"); 
+          }
+        })
+        .catch((err) => {
+          setError("Une erreur s'est produite");
+          setLoading(false);
+        });
     }
   }
 
