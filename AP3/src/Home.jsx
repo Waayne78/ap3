@@ -1,3 +1,4 @@
+// Home.jsx
 import { useState } from "react";
 import "./App.css";
 
@@ -14,8 +15,6 @@ function Home() {
 
   return (
     <div className="app">
-     
-
       <header className="app-header" id="home">
         <h1>Find a Doctor and Book an Appointment</h1>
         <p>Your health, our priority.</p>

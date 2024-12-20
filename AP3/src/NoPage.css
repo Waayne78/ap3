@@ -1,0 +1,82 @@
+/* Style global pour la page 404 */
+.no-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff7a18, #af002d 40%, #320b86);
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  overflow: hidden;
+}
+
+.error-container {
+  padding: 40px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+  animation: fadeIn 1s ease-out;
+}
+
+.error-code {
+  font-size: 100px;
+  font-weight: bold;
+  letter-spacing: 8px;
+  margin-bottom: 20px;
+  color: #ffeb3b;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+}
+
+.error-message {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  font-weight: 500;
+}
+
+.go-home {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: #ffeb3b;
+  padding: 10px 20px;
+  background: #320b86;
+  border-radius: 5px;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.go-home:hover {
+  background: #af002d;
+  transform: scale(1.1);
+}
+
+.go-home:active {
+  transform: scale(1);
+}
+
+/* Animation fade-in */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .error-code {
+    font-size: 80px;
+  }
+
+  .error-message {
+    font-size: 1rem;
+  }
+
+  .go-home {
+    font-size: 1rem;
+  }
+}

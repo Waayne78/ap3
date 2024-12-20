@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Signup.css";
- 
+
 function Signup() {
   const [formValues, setFormValues] = useState({
     username: "",
@@ -8,17 +8,36 @@ function Signup() {
     password: "",
     confirm: "",
   });
- 
+
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState("");  
+  const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(false);
- 
+
+  function validatePassword(password) {
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
+    return passwordRegex.test(password);
+  }
+
+  function validateUsername(username) {
+    const usernameRegex = /^[a-zA-Z0-9_]{3,}$/;
+    return usernameRegex.test(username);
+  }
+
   function handleSignup(event) {
     event.preventDefault();
-    const { email, password, confirm } = formValues;
- 
+    const { username, email, password, confirm } = formValues;
+
     if (!email || !password || !confirm) {
       setError("Veuillez remplir tous les champs");
+    } else if (!validatePassword(password)) {
+      setError(
+        "Le mot de passe doit contenir au moins 8 caractères, une majuscule, une minuscule, un chiffre et un caractère spécial."
+      );
+    } else if (!validateUsername(username)) {
+      setError(
+        "Le nom d'utilisateur ne peut contenir que des lettres, des chiffres et des underscores."
+      );
     } else if (password !== confirm) {
       setError("Les mots de passe ne correspondent pas");
     } else {
@@ -31,10 +50,10 @@ function Signup() {
       }, 3000);
     }
   }
- 
+
   return (
     <>
-      <form onSubmit={handleSignup}>
+      <form onSubmit={handleSignup} className="signup-form">
         <h1>Inscription</h1>
         <label>Nom d'utilisateur</label>
         <input
@@ -78,5 +97,5 @@ function Signup() {
     </>
   );
 }
- 
+
 export default Signup;
